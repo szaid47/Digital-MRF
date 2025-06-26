@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Waste Management Report</title>
+    <style>
+        @page {
+            size: A4 landscape;
+            margin: 15mm;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            margin: 20px 0 10px 0;
+            color: #205067;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .main-title {
+            text-align: center;
+            font-size: 16px;
+            margin: 10px 0 25px;
+            color: #205067;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+            margin-bottom: 25px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 6px 4px;
+            text-align: left;
+            vertical-align: middle;
+            word-break: break-word;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            color: #205067;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+        .summary-table td,
+        .summary-table th {
+            text-align: center;
+        }
+
+        .section {
+            page-break-inside: avoid;
+        }
+
+        .no-data {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            padding: 20px;
+        }
+
+        .note {
+            background: #f0f8ff;
+            border-left: 4px solid #205067;
+            padding: 10px 15px;
+            font-size: 10px;
+            margin-top: 20px;
+        }
+
+        /* Width adjustments for records */
+        .records-table th:nth-child(1),
+        .records-table td:nth-child(1) {
+            width: 4%;
+            text-align: center;
+        }
+
+        .records-table th:nth-child(2),
+        .records-table td:nth-child(2) {
+            width: 11%;
+        }
+
+        .records-table th:nth-child(3),
+        .records-table td:nth-child(3) {
+            width: 13%;
+        }
+
+        .records-table th:nth-child(4),
+        .records-table td:nth-child(4) {
+            width: 10%;
+            text-align: right;
+        }
+
+        .records-table th:nth-child(5),
+        .records-table td:nth-child(5) {
+            width: 26%;
+        }
+
+        .records-table th:nth-child(6),
+        .records-table td:nth-child(6) {
+            width: 36%;
+        }
+        
+    /* Panchayat table specific styling */
+    .panchayat-table th,
+    .panchayat-table td {
+        word-break: break-word;
+        overflow-wrap: break-word;
+        padding: 6px 4px;
+        font-size: 11px;
+    }
+
+    .panchayat-table th:nth-child(1),
+    .panchayat-table td:nth-child(1) {
+        width: 6%;
+        text-align: center;
+    }
+
+    .panchayat-table th:nth-child(2),
+    .panchayat-table td:nth-child(2) {
+        width: 54%;
+    }
+
+    .panchayat-table th:nth-child(3),
+    .panchayat-table td:nth-child(3) {
+        width: 20%;
+        text-align: right;
+    }
+
+    .panchayat-table th:nth-child(4),
+    .panchayat-table td:nth-child(4) {
+        width: 20%;
+        text-align: center;
+    }
+</style>
+
+</head>
+
+<body>
+    <div class="main-title"><b>Waste Management Report - Digital MRF</b></div>
+
+    <div class="section">
+        <h2>I. Executive Summary</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>Total Records</th>
+                    <th>Total Weight (kg)</th>
+                    <th>Average Weight (kg)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ summaries.total_records|default:"0" }}</td>
+                    <td>{{ summaries.total_weight|floatformat:1|default:"0.0" }}</td>
+                    <td>{{ summaries.average_weight|floatformat:1|default:"0.0" }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>II. Panchayat Summary</h2>
+        {% if summaries_county %}
+        <table class="panchayat-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Panchayat</th>
+                    <th>Total Weight (kg)</th>
+                    <th>Records</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in summaries_county %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ item.source_panchayat|default:"Not Specified" }}</td>
+                    <td>{{ item.total_weight|floatformat:1 }}</td>
+                    <td>{{ item.record_count }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="no-data">No panchayat summary available</div>
+        {% endif %}
+        </div>
+    <div class="section">
+        <h2>III. Detailed Waste Records</h2>
+        {% if all_records %}
+        <table class="records-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Date</th>
+                    <th>Vehicle No</th>
+                    <th>Weight</th>
+                    <th>Panchayat</th>
+                    <th>Waste Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in all_records %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ item.date|date:"d M Y" }}</td>
+                    <td>{{ item.vehicle_no|default:"-" }}</td>
+                    <td>{{ item.weight_kg|floatformat:1 }}</td>
+                    <td>{{ item.source_panchayat|default:"Not Specified" }}</td>
+                    <td>{{ item.waste_type|default:"Mixed Waste" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="no-data">No waste records found for this report.</div>
+        {% endif %}
+    </div>
+
+    <div class="note">
+        <b>Note:</b> All weight values are in kilograms. Records are based on user input and subject to verification.
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<main class="formPage my-xl">
+    <div class="content-box">
+        <div class="formWrapper">
+
+            <h2 style="text-align:center; color: #205067;">📦 Export Waste Records to CSV</h2>
+            <p style="text-align:center;">Use the form below to optionally filter the data before exporting.</p>
+
+            <form class="form" method="POST" action="{% url 'export-to-csv' %}">
+                {% csrf_token %}
+
+                <div class="form__field">
+                    <label for="start_date">Start Date:</label>
+                    <input type="date" name="start_date" class="input input--text" />
+                </div>
+
+                <div class="form__field">
+                    <label for="end_date">End Date:</label>
+                    <input type="date" name="end_date" class="input input--text" />
+                </div>
+
+                <div class="form__field">
+                    <label for="panchayat">Panchayat (Optional):</label>
+                    <input type="text" name="panchayat" class="input input--text" placeholder="e.g., Velachery" />
+                </div>
+
+                <div class="form__submit" style="margin-top: 20px;">
+                    <input class="btn btn--sub btn--lg my-md" type="submit" value="Export CSV" />
+                </div>
+            </form>
+
+        </div>
+    </div>
+</main>
+{% endblock content %}

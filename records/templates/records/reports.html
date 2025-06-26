@@ -1,0 +1,162 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    h2,
+    h3 {
+        color: #205067;
+        margin-left: 15px;
+        margin-bottom: 10px;
+    }
+
+    small {
+        display: block;
+        margin-left: 15px;
+        color: #666;
+    }
+
+    table {
+        width: 96%;
+        margin: 15px auto;
+        border-collapse: collapse;
+        font-size: 14px;
+    }
+
+    th,
+    td {
+        border: 1px solid #dddddd;
+        padding: 10px;
+        text-align: left;
+        vertical-align: middle;
+    }
+
+    th {
+        background-color: #f2f2f2;
+        color: #205067;
+    }
+
+    tr:nth-child(even) {
+        background-color: #fafafa;
+    }
+
+    .form-row {
+        width: 96%;
+        margin: 15px auto;
+    }
+
+    .form-row label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .form-row input,
+    .form-row select {
+        width: 100%;
+        padding: 6px;
+        margin-bottom: 10px;
+    }
+
+    .form-submit {
+        margin-left: 15px;
+        margin-top: 10px;
+    }
+
+    .form-submit input {
+        padding: 10px 20px;
+    }
+
+    .download-buttons {
+        display: flex;
+        gap: 15px;
+        margin-left: 15px;
+        margin-top: 20px;
+    }
+</style>
+
+<h2><b>Waste Records Report</b></h2>
+
+<h3>Total Summary</h3>
+<small>Records until: {% now "F d, Y" %}</small>
+<small>Note: Quantities are in kg</small>
+
+<table>
+    <thead>
+        <tr>
+            <th>Total Records</th>
+            <th>Total Weight</th>
+            <th>Average Weight</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ summaries.total_records }}</td>
+            <td>{{ summaries.total_weight|floatformat:2 }}</td>
+            <td>{{ summaries.average_weight|floatformat:2 }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Search Records</h3>
+<form class="form" method="get">
+    {% csrf_token %}
+    <div class="form-row">
+        {{ my_filter.form.as_p }}
+    </div>
+    <div class="form-submit">
+        <input class="btn btn--sub btn--lg my-md" type="submit" value="Search" />
+    </div>
+</form>
+
+<h3>All Waste Records</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Vehicle No</th>
+            <th>Panchayat</th>
+            <th>Waste Type</th>
+            <th>Weight (kg)</th>
+            <th>Recorded By</th>
+            <th>Created</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in all_records %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.date }}</td>
+            <td>{{ item.vehicle_no }}</td>
+            <td>{{ item.source_panchayat }}</td>
+            <td>{{ item.waste_type }}</td>
+            <td>{{ item.weight_kg }}</td>
+            <td>
+                {% if item.owner %}
+                <a href="{% url 'user-profile' item.owner.id %}">{{ item.owner.name }}</a>
+                {% else %}
+                N/A
+                {% endif %}
+            </td>
+            <td>{{ item.created|date:"d-m-Y H:i" }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="download-buttons">
+    <form method="POST" action="{% url 'export-to-csv' %}">
+        {% csrf_token %}
+        <input class="btn btn--sub btn--lg" type="submit" value="Download CSV" />
+    </form>
+
+    <form method="POST" action="{% url 'export-pdf' %}">
+        {% csrf_token %}
+        <input class="btn btn--sub btn--lg" type="submit" value="Download PDF" />
+    </form>
+</div>
+
+{% endblock content %}

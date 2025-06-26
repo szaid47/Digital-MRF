@@ -1,0 +1,68 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<main class="projects">
+    <section class="hero-section text-center">
+        <div class="container container--narrow">
+            <div class="hero-section__box">
+                <h2><span>MRF </span> Records </h2>
+            </div>
+
+            <div class="hero-section__search">
+                <form class="form" action="{% url 'records' %}" method="get">
+                    <div class="form__field">
+                        <label for="formInput#search">Search By Panchayat / Vehicle No</label>
+                        <input class="input input--text" id="formInput#search" type="text" name="search_query"
+                            value="{{ search_query }}" placeholder="Search by Panchayat or Vehicle No" />
+                    </div>
+
+                    <input class="btn btn--sub btn--lg" type="submit" value="Search" />
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="projectsList">
+        <div class="container">
+            <div class="grid grid--three">
+                {% for record in records %}
+                <div class="column">
+                    <div class="card project">
+                        <a href="{% url 'record' record.id %}" class="project">
+                            <div class="card__body">
+                                <h3 class="project__title"> {{ record.name|default:"(Unnamed Record)" }}</h3>
+                                <h4 class="project__title"> {{ record.date }}</h4>
+                                <h4 class="project__title"> {{ record.vehicle_no }}</h4>
+                                <p> <strong>Waste Type:</strong> {{ record.waste_type|default:"-" }}</p>
+                                <p>📍<strong>Panchayat:</strong> {{ record.source_panchayat|default:"-" }}</p>
+                                <p class="project--rating">
+                                    <strong>Weight:</strong> {{ record.weight_kg }} kg
+                                </p>
+                                <p>
+                                    <strong>Recorded by:</strong>
+                                    {% if record.owner %}
+                                    <a href="{% url 'user-profile' record.owner.id %}">{{ record.owner.name }}</a>
+                                    {% else %}
+                                    N/A
+                                    {% endif %}
+                                </p>
+                                <p>
+                                    <small>🕒 Created: {{ record.created|date:"d-m-Y H:i" }}</small>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                {% empty %}
+                <p>No records found.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    {% include 'pagination.html' with queryset=records custom_range=custom_range %}
+
+</main>
+
+{% endblock content %}
