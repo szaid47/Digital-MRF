@@ -1,0 +1,458 @@
+/* Report Styles */
+.report-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Report Header */
+.report-header {
+    background: linear-gradient(135deg, #205067 0%, #2c6b7f 100%);
+    color: white;
+    padding: 30px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.report-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0 0 15px 0;
+    text-align: center;
+}
+
+.report-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+/* Section Styling */
+.summary-section,
+.filters-section,
+.export-section,
+.records-section,
+.pagination-section {
+    background: white;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e1e5e9;
+}
+
+.section-title {
+    color: #205067;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e1e5e9;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.records-count {
+    color: #666;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Summary Cards */
+.summary-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.summary-card {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.summary-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.summary-card .card-header h3 {
+    color: #205067;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.card-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #28a745;
+    margin: 0;
+}
+
+/* Filter Section */
+.filter-container {
+    background: #f8f9fa;
+    border-radius: 6px;
+    padding: 20px;
+}
+
+.filter-form .filter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.filter-form p {
+    margin: 0;
+}
+
+.filter-form label {
+    display: block;
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.filter-form input,
+.filter-form select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.filter-form input:focus,
+.filter-form select:focus {
+    outline: none;
+    border-color: #205067;
+    box-shadow: 0 0 0 2px rgba(32, 80, 103, 0.2);
+}
+
+.filter-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+}
+
+/* Export Section */
+.export-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.export-form {
+    margin: 0;
+}
+
+/* Button Styles */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary {
+    background-color: #205067;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #1a4055;
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    transform: translateY(-1px);
+}
+
+.btn-export {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-export:hover {
+    background-color: #218838;
+    transform: translateY(-1px);
+}
+
+.btn-csv {
+    background-color: #17a2b8;
+}
+
+.btn-csv:hover {
+    background-color: #138496;
+}
+
+.btn-pdf {
+    background-color: #dc3545;
+}
+
+.btn-pdf:hover {
+    background-color: #c82333;
+}
+
+.btn-print {
+    background-color: #6f42c1;
+}
+
+.btn-print:hover {
+    background-color: #5a32a3;
+}
+
+/* Table Styles */
+.table-container {
+    overflow-x: auto;
+    border-radius: 6px;
+    border: 1px solid #dee2e6;
+}
+
+.records-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    background: white;
+}
+
+.records-table th {
+    background: linear-gradient(135deg, #205067 0%, #2c6b7f 100%);
+    color: white;
+    padding: 15px 12px;
+    text-align: left;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    user-select: none;
+}
+
+.records-table th.sortable {
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.records-table th.sortable:hover {
+    background: linear-gradient(135deg, #1a4055 0%, #25596b 100%);
+}
+
+.sort-indicator {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.5;
+}
+
+.sort-indicator::after {
+    content: '↕';
+    font-size: 0.8rem;
+}
+
+.records-table th.sort-asc .sort-indicator::after {
+    content: '↑';
+    opacity: 1;
+}
+
+.records-table th.sort-desc .sort-indicator::after {
+    content: '↓';
+    opacity: 1;
+}
+
+.records-table td {
+    padding: 12px;
+    border-bottom: 1px solid #dee2e6;
+    vertical-align: middle;
+}
+
+.record-row:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.record-row:hover {
+    background-color: #e3f2fd;
+    transition: background-color 0.2s ease;
+}
+
+/* Cell-specific styles */
+.waste-type-badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.waste-type-organic {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.waste-type-recyclable {
+    background-color: #cce5ff;
+    color: #004085;
+}
+
+.waste-type-hazardous {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.owner-link {
+    color: #205067;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.owner-link:hover {
+    text-decoration: underline;
+}
+
+.no-owner {
+    color: #6c757d;
+    font-style: italic;
+}
+
+.no-records td {
+    text-align: center;
+    padding: 40px;
+    color: #6c757d;
+    font-style: italic;
+}
+
+/* Pagination */
+.pagination-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.pagination-info {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+.pagination-controls {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.btn-pagination {
+    padding: 8px 12px;
+    background-color: #f8f9fa;
+    color: #205067;
+    border: 1px solid #dee2e6;
+    font-size: 0.8rem;
+}
+
+.btn-pagination:hover {
+    background-color: #e9ecef;
+    text-decoration: none;
+}
+
+.current-page {
+    padding: 8px 12px;
+    font-weight: 600;
+    color: #205067;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .report-container {
+        padding: 10px;
+    }
+
+    .report-title {
+        font-size: 2rem;
+    }
+
+    .report-meta {
+        flex-direction: column;
+        gap: 5px;
+        text-align: center;
+    }
+
+    .summary-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .export-buttons {
+        flex-direction: column;
+    }
+
+    .pagination-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}
+
+/* Print Styles */
+@media print {
+
+    .filters-section,
+    .export-section {
+        display: none;
+    }
+
+    .report-container {
+        max-width: none;
+        padding: 0;
+    }
+
+    .records-table {
+        font-size: 0.8rem;
+    }
+
+    .records-table th,
+    .records-table td {
+        padding: 8px 6px;
+    }
+}

@@ -27,10 +27,10 @@
         </section>
 
         <section class="devlist">
-            <div class="container">
+            <div class="container" style="padding: 100px;">
                 <div class="grid grid--three">
                     {% for profile in profiles %}
-                        <div class="column card">
+                        <div class="column card" style="padding:10px;">
                             <div class="dev">
                                 <a href="{% url 'user-profile' profile.id %}" class="card__body">
                                     <div class="dev__profile">
