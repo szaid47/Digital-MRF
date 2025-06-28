@@ -1,17 +1,26 @@
-# Waste Management System
+# Digital-MRF-System 
 
 ## Project-Overview
+
+<p align="center">
+  <img src="static/screenshots/mainPage.png" alt="Dashboard Preview" width="80%" />
+  <br/>
+  
+</p>
 
 The Waste Management System is a Django-based web application designed to enhance
 efficiency in waste management and promote environmental sustainability. 
 This application allows users to track waste collection and  manage recycling processes.
 
+- 📄 [Download PDF Report](static/screenshots/waste_evidence_report.pdf)
+- 📊 [Download CSV Report](static/screenshots/csv_report.csv)
+
+
 
 ## Features
 
 - **User Registration and Login: Secure user authentication system.**
-- **Waste Collection Tracking: Users can track waste collection and disposal/recycling.**
-- **Recycling Management: Information and management tools for recycling processes.** 
+- **Waste Collection Tracking: Users can track waste collection and disposal/recycling.** 
 - **Export data in csv and pdf format**
 - **API : built with DRF and simple-jwt** 
 
@@ -20,7 +29,7 @@ This application allows users to track waste collection and  manage recycling pr
 
 ## Technology Stack
 - **Backend: Django (Python)** 
-- **Database: Postgresql** 
+- **Database: sqlite** 
 - **API: Django Rest Framework**
 - **Frontend: HTML, CSS**
 - **Dependency Management: Poetry**
@@ -87,3 +96,17 @@ python manage.py test
 ### Versioning
 - ** This application is at version 0.3.2 and subjected to future changes.**
 - 
+
+Here’s a quick look at some of the important pages in the Digital MRF System:
+
+### SignUp Page
+<img src="static/screenshots/signUpPage.png" alt="signup Page" width="80%"/>
+
+###  Profile Page
+<img src="static/screenshots/accountPage.png" alt="ProfilePage" width="80%"/>
+
+### 📄 Waste Record Form
+<img src="static/screenshots/RecordEntry.png" alt="Waste Record Form" width="80%"/>
+
+### 📊 Reports Page
+<img src="static/screenshots/ReportsPage.png" alt="Reports Page" width="80%"/>

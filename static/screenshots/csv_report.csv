@@ -1,0 +1,14 @@
+Title: List of all waste records
+
+Name,Date,Vehicle No,Weight (kg),Source Panchayat,Waste Type
+Anirudh,2025-02-23,KA19EZ1234,150.0,Belthangady,Mixed Dry
+DInesh K,2025-06-15,KA21TH5678,200.0,Surathkal,Mixed Dry
+Dinesh K,2025-01-22,KA2EJ4476,254.0,Uppinangadi,Dry
+Dinesh K,2025-01-22,KA2EJ4476,230.0,Uppinangadi,dry
+Ramesh,2025-03-21,KA20EJ1447,230.0,Naravi,Plastic+Rubber
+Ramesh,2025-04-21,KA18TH5678,230.0,Belthangady,Dry
+Ramesh,2025-06-03,KA19EZ1234,124.0,Belthangady,Mixed Dry
+Ramesh,2025-06-21,KA20EJ1447,205.0,Sullya,Dry
+Syed Zaheed,2025-06-21,KA14MD1234,234.0,PACHANADY,Plastic+Rubber
+zaheed,2025-06-21,KA14MD1234,200.0,PACHANADY,MIX
+zaheed,2025-06-08,KA21TH5678,123.0,Surathkal,Mixed Dry
