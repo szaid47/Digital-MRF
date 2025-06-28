@@ -48,8 +48,8 @@ machine for development and testing purposes.
 ## Installation
 
 ### 1.Clone the repository
-- **git clone https://github.com/yourusername/WasteManagement.git**
-- **cd** WasteManagement
+- **git clone https://github.com/szaid47/rural-waste-monitor**
+- **cd** Django-App
 
 ### 2.Set up a Poetry environment
 ```bash
