@@ -3,8 +3,8 @@ from .models import Record
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 # Update report columns to include 'name'
-REPORTS_COLUMNS_VALUES = ['name', 'date', 'vehicle_no', 'weight_kg', 'source_panchayat', 'waste_type']
-REPORTS_COLUMNS_HEADER = ['Name', 'Date', 'Vehicle No', 'Weight (kg)', 'Source Panchayat', 'Waste Type']
+REPORTS_COLUMNS_VALUES = ['name', 'date', 'vehicle_no', 'weight_kg', 'Destination', 'waste_type']
+REPORTS_COLUMNS_HEADER = ['Name', 'Date', 'Vehicle No', 'Weight (kg)', 'Destination', 'Waste Type']
 
 
 def search_waste(request):
@@ -15,7 +15,7 @@ def search_waste(request):
     records = Record.objects.filter(
         Q(name__icontains=search_query) |
         Q(vehicle_no__icontains=search_query) |
-        Q(source_panchayat__icontains=search_query) |
+        Q(Destination__icontains=search_query) |
         Q(waste_type__icontains=search_query)
     )
 

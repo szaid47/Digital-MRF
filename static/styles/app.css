@@ -277,10 +277,30 @@ img {
 }
 
 .grid--three {
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap : 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4rem;
+  /* Increase as needed */
 }
 
+.narrow-form p {
+  max-width: 400px;
+  margin-bottom: 1rem;
+}
+
+.narrow-form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+.narrow-form input,
+.narrow-form select {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
 
 .devlist .dev .dev__profile {
   display: flex;

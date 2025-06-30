@@ -10,14 +10,14 @@ class Record(models.Model):
     date = models.DateField(null=True, blank=True)
     vehicle_no = models.CharField(max_length=100, null=True, blank=True)
     weight_kg = models.FloatField(null=True, blank=True)
-    source_panchayat = models.CharField(max_length=255, null=True, blank=True)
+    Destination = models.CharField(max_length=255, null=True, blank=True)
     waste_type = models.CharField(max_length=255, null=True, blank=True)
 
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, primary_key=True)
 
     def __str__(self):
-        return f"{self.date} - {self.vehicle_no} - {self.source_panchayat}"
+        return f"{self.date} - {self.vehicle_no} - {self.Destination}"
 
     # ------- ✅ Reporting Methods (inside Record model) --------
     @classmethod
@@ -31,12 +31,12 @@ class Record(models.Model):
     @classmethod
     def get_all_records(cls):
         return cls.objects.values(
-            'date', 'vehicle_no', 'weight_kg', 'source_panchayat', 'waste_type'
+            'date', 'vehicle_no', 'weight_kg', 'Destination', 'waste_type'
         ).order_by('-date')
 
     @classmethod
     def get_quantity_by_county(cls):
-        return cls.objects.values('source_panchayat').annotate(
+        return cls.objects.values('Destination').annotate(
             total_weight=Sum('weight_kg'),
             record_count=Count('id')
         ).order_by('-total_weight')

@@ -11,8 +11,7 @@ from django.template.loader import get_template
 from xhtml2pdf import pisa
 from datetime import datetime
 from django.utils.dateparse import parse_date
-from django.db.models import Count
-from django.db.models import Sum,Avg
+from django.db.models import Count, Sum, Avg
 
 def records(request):
     all_records, search_query = search_waste(request)
@@ -89,7 +88,6 @@ def get_reports(request):
     return render(request, 'records/reports.html', context)
 
 
-
 @login_required(login_url='login')
 def export_to_csv(request):
     response = HttpResponse(content_type='text/csv')
@@ -115,7 +113,7 @@ def export_to_csv(request):
         if end_date:
             records = records.filter(date__lte=parse_date(end_date))
         if panchayat:
-            records = records.filter(source_panchayat__icontains=panchayat)
+            records = records.filter(Destination__icontains=panchayat)
 
     # Extract values
     record_values = list(records.values_list(*REPORTS_COLUMNS_VALUES))
@@ -132,14 +130,10 @@ def export_to_csv(request):
     return response
 
 
-
 @login_required(login_url='login')
 def export_to_csv_view(request):
     return render(request, 'records/export-to-csv.html')
 
-
-from datetime import datetime
-from django.utils.dateparse import parse_date
 
 @login_required(login_url='login')
 def export_to_pdf(request):
@@ -156,7 +150,7 @@ def export_to_pdf(request):
         if end_date:
             records = records.filter(date__lte=parse_date(end_date))
         if panchayat:
-            records = records.filter(source_panchayat__icontains=panchayat)
+            records = records.filter(Destination__icontains=panchayat)
 
     summaries = records.aggregate(
         total_records=Count('id'),
@@ -165,10 +159,10 @@ def export_to_pdf(request):
     )
 
     summaries_of_records = records.values(
-        'date', 'vehicle_no', 'weight_kg', 'source_panchayat', 'waste_type'
+        'date', 'vehicle_no', 'weight_kg', 'Destination', 'waste_type'
     ).order_by('-date')
 
-    summaries_county = records.values('source_panchayat').annotate(
+    summaries_county = records.values('Destination').annotate(
         total_weight=Sum('weight_kg'),
         record_count=Count('id')
     ).order_by('-total_weight')
@@ -192,7 +186,6 @@ def export_to_pdf(request):
     if pisa_status.err:
         return HttpResponse('We had some errors <pre>' + html + '</pre>')
     return response
-
 
 
 @login_required(login_url='login')

@@ -103,7 +103,7 @@
 <h3>Search Records</h3>
 <form class="form" method="get">
     {% csrf_token %}
-    <div class="form-row">
+    <div class="form-row narrow-form">
         {{ my_filter.form.as_p }}
     </div>
     <div class="form-submit">
@@ -118,7 +118,7 @@
             <th>Name</th>
             <th>Date</th>
             <th>Vehicle No</th>
-            <th>Panchayat</th>
+            <th>Destination</th>
             <th>Waste Type</th>
             <th>Weight (kg)</th>
             <th>Recorded By</th>
@@ -131,7 +131,7 @@
             <td>{{ item.name }}</td>
             <td>{{ item.date }}</td>
             <td>{{ item.vehicle_no }}</td>
-            <td>{{ item.source_panchayat }}</td>
+            <td>{{ item.Destination }}</td>
             <td>{{ item.waste_type }}</td>
             <td>{{ item.weight_kg }}</td>
             <td>

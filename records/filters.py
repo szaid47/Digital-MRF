@@ -7,6 +7,6 @@ class FilterRecords(django_filters.FilterSet):
         fields = {
             'date': ['exact', 'gte', 'lte'],
             'vehicle_no': ['icontains'],
-            'source_panchayat': ['icontains'],
+            'Destination': ['icontains'],  # ✅ Updated field name
             'waste_type': ['icontains'],
         }
